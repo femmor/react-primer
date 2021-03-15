@@ -1,12 +1,23 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect } from 'react'
+import { AppContext } from '../App'
 
 const Home = () => {
+
+  const {state, setState} = useContext(AppContext)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setState(state => ({
+        ...state,
+        name: "Egomson"
+      }))
+    }, 1000);
+  }, [])
+
   return (
     <div>
       <h2>This is the Homepage</h2>
-      <p>Check out the <Link to='/lists'>Links component</Link></p>
-      <p>Check out the <Link to='/useref-hook'>UseRef hook component</Link></p>
+      <h4>Welcome {state.name}!</h4>
     </div>
   )
 }
